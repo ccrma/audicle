@@ -1,0 +1,157 @@
+
+define on-the-fly programming.
+
+our story begins with on-the-fly programming, but will take us far beyond 
+this practice to think about new ways of programming and thinking about 
+programming computer music.
+
+last year in Singapore, we introduced ChucK, a strongly-time, concurrent 
+and on-the-fly programming language.  while on-the-fly programming is 
+something we strive to do, the emerging strength of the ChucK language 
+is in its precise control over time, and a dead simple concurrent 
+programming model for audio synthesis.  There is a strong emphasis 
+to make this timing and concurrency model formal and well-defined.  
+Because of that well-defined nature, we can also visualize under the same 
+framework and gain deeper and more immediate insight into the audio 
+programs that we write.
+
+ChucK is a synthesis language, but unlike most existing languages, there 
+is a formal timing mechanism which frees the programmer from any notion 
+of a fixed control rate.  In ChucK, control rate can be anywhere from 
+sample-rate, or even sub sample rate, to days, weeks, and even years.  
+Compound this with concurrency, and you have a framework whose 
+components can choose the timing that best suits its own needs.  
+Furthermore, this allows expressiveness in the language where other 
+languages like Max/MSP, SuperCollider do not provide - sub control rate 
+timing.  To achieve these, external modules have to be written and 
+imported - the problem, of course, is that the programmer is at the mercy 
+of the module designer and implementer.  If he wants an additional 
+feature or make a modification, he would also have to do it outside the 
+language.  Research, in this sense, might as well be done in a low level 
+language like C.  The idea that it would reduce the need for externals.  
+ChucK can truly be used not only for synthesis, but also for synthesis 
+research, and in-language noodling.
+
+If you want to write synthesis programs, these are some of your options:
+---
+CSound Max/MSP SuperCollider Nyquist Pd C/C++ Java STK
+
+Instead of making the programs graphical, which loses generality and 
+expressiveness in favor of rapid prototyping, let's make code easier to 
+write and read.
+
+Also, ChucK is about making code easy to write, and straight-forward to 
+reason about.  It's about thinking about sound in a natural flow that is 
+also suitable for the machine.
+
+Show a comb filter.  plucked string.  build step by step in the audicle.
+
+The Audicle is about making on-the-fly programming faster and more 
+enjoyable.  But at it's heart, it's about insight into the audio programs 
+that we write, and about making clear the process of audio programming.
+It's about different ways of looking at and reasoning about audio programs.
+
+on-the-fly programming is not just about writing code at runtime.
+
+Synthesis
+Synthesis research
+Education
+Visualization
+Performance
+
+chapter one: on-the-fly programming
+chapter two: ChucK and strongly time concurrency
+             demo
+chapter three: audicle
+chapter four: faces of the audicube
+chapter five: on-the-fly programming super-sized
+chapter six: emperical proof and the future
+
+---
+story:
+
+1. remind them of chuck:
+   text-based language
+   strongly-timed
+   dead-simple concurrency
+   no sacrifice of generality, in face it is more expressive than
+   existing high level languages because it really gives you total
+   control over timing, control rates, and timing.
+
+for example:
+
+   demo1: sinosc s => dac; while( true ) { change frequency }
+
+2. concurrency and timing makes on-the-fly programming modular and
+   precise.
+   - but have to work within editor/shell interface - as the programs
+   and the number of shreds grow, the programmer would have to use
+   status and keep a fair amount of information in his/her head...
+
+for example:
+
+   demo2: oft
+
+3. The Audicle
+
+   - started off as a "smart" text editor
+     - version control
+     - shred management/control
+     - easy organization
+     - makes code easy to see
+
+   demo3: editor demo
+   - start buffer
+   - enter code
+   - spork 
+   - spork more
+   - version
+   - remove
+   - replace
+   - split
+
+   - but grew into much more than that
+     - shredder
+     - view chuck shreds/processes,
+     - average control rate
+     - cycles
+     - computatation
+
+demo: shredder at work
+      powerup.ck
+
+   - Time n' Timing
+     - the heartbeat of the shreds
+
+   - audio waveform
+     - overall dac
+     - real-time full framerate 
+
+demo: drumming
+demo: sine poops
+
+4. implementation + reflections
+
+   - OpenGL
+
+   - time is ripe for 3D graphics OpenGL
+     - full control, look and feel
+     - full framerate (30+)
+     - fullscreen == immersive
+     - hardware accelerated
+     - cross platform
+     - less bursty than conventional OS windowing systems
+       such as Tcl/Tk, Qt, X, and even win32
+
+   - downside - takes longer to implement
+     - but once it's done, it's easy to update
+ 
+5. future work
+
+   - a lot editor support, dealing with language specific knowledge
+   - more compilation feedback - we have all the compiler data at
+     runtime - maybe do on-the-fly optimization-space explorations
+   - make each face look better
+   - collaboration between audicles
+
+demo:    

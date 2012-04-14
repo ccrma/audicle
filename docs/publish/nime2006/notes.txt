@@ -1,0 +1,47 @@
+
+abstract
+introduction
+motivation
+---
+- simple enough that anyone can pick up and use, yet complex enough to generate interesting music/sound (as a group).
+- as direct and immediate as possible
+- as precise as possible, even at the cost of resolution
+
+- collaboration
+ in a tightly-timed setting
+- limit the individual, enhance the group result
+
+related work
+---
+midigrid (see nime 2003)
+chu chu rocket
+domino rally
+arkanoid
+the incredible machine
+lemmings
+food (salad)
+notes staff
+toshio iwai ('s works)
+golan levin ('s works) - audiovisual environment suite
+http://www.superkids.com/aweb/pages/reviews/music/1/simtunes/merge.shtml
+
+content
+---
+color squares
+mousemania
+dominotes
+saladworks
+collaborative musical notation
+
+
+http://en.wikipedia.org/wiki/Emergence
+
+references
+---
+Levin, G. Flong. "Painterly Interfaces for Audiovisual Performance."  M.S. Thesis, MIT Media Laboratory, August 2000.
+
+Flong, G. Levin. "Continuous automated elevator music synthesis." OIME, September 1534.
+
+Magnusson, T. "ixi software: The Interface as Instrument"  In Proceedings of NIME 2005.  p.212-512
+
+Hunt, A., R. Kirk. "MidiGrid: Past, Present, and Future"  In Proceedings of NIME 2003.  p.135-9

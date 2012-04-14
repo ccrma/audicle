@@ -1,0 +1,98 @@
+4.1 Color Squares
+In this interface, each client has an N x M grid and a finite color 
+palette. Every color can be mapped to a separate event or to 
+silence, with a potentially different mapping for each client. The user 
+at every client machine selects a color using the mouse or the keys 1-9 
+and a-z  (0 and es are reserved for the silent color), and applies it to 
+any number of squares on the grid.
+
+The server program moves through the grid in any desired manner, 
+including sequential, random, or in any other fashion, in any timing 
+pattern as specified in code in the server ChucK program. The client is 
+aware of when a particular grid element is activated and what color was 
+last placed on it, and can respond to this information in any 
+programmatic manner, such as by playing a sound associated with the 
+color of the currently activated grid element. Sample ChucK code for the 
+server and client sides are presented here. 
+
+4.2 Spheres
+This is a three-dimensional interface extending the color squares 
+metaphor. It consists of spheres that bounce from a height, with or 
+without energy loss, and colored square covering the "ground". Each time 
+a sphere hits the ground, it can trigger an event based on the color 
+and mapping of the square it touches. Multiple views of the space allow 
+the user to control where a sphere bounces as well as its starting 
+height. The bouncing location (or square) controls which event the 
+sphere triggers, while the height translates to how often it bounces and 
+thus how often the triggered event is repeated. 
+
+4.3 Mouse Mania
+The Mouse Mania interface draws from the Chu Chu Rocket game described 
+earlier. Each client or host has a virtual entity or "mouse" and a grid 
+that acts as a map for the mouse to follow. Each grid element can 
+have a user specified color and shape. As in the Color Squares 
+interface, the color of a grid element can be mapped to an event 
+that is triggered when a mouse reaches it. In addition, the grid 
+element's shape can control the subsequent movement of the mouse, 
+including its direction, speed, or special dance moves possibly 
+associated with repetition of the related musical event. A mouse need 
+not be confined to a single host; another option is for the server to 
+own many mice that run from host to host, changing the spatial dynamics 
+of the piece. 
+
+4.4 Dominotes
+This interface uses the visual metaphor of dominoes to control events 
+being triggered in rapid succession. Each user constructs domino rallies 
+and connects sub-rallies to a central launching station when they are 
+ready to be played. The launching station, at the discretion of the 
+server, pushes all adjacent or connected dominoes, triggering a chain 
+reaction. Each domino toppling, as well as special items such as rockets 
+in the dominoes' path, can be mapped to any parameters or events at the 
+discretion of the client. Toppled dominoes can be made upright 
+automatically, or manually by the users' selecting any subset of their 
+dominoes. Forks in a domino rally allow each client's musical sequence 
+to follow multiple paths in parallel. 
+
+4.5 SaladTosser
+This interface is based on the idea of musical "recipes" and consists of 
+salad ingredients, dressing, and a mixing bowl for each client. 
+Ingredients can map to musical events as specified by the client. The 
+user creates a salad by inserting desired quanitites of each ingredient 
+into the mixing bowl and tossing it. The tossing causes events to be 
+triggered repeatedly; events associated with ingredients that make up a 
+larger portion of the salad are triggered more often and thus have 
+greater density in the resulting sound. As more ingredients are added to 
+the salad, events are triggered more often. Further, a variety of 
+dressings are available for adding to the mix, each dressing being 
+associated with a different filter or sound processing effect. Finally, 
+there is a "consume" option which gradually empties out the contents of 
+the bowl and thus reduces the overall event density until there is 
+silence. This interface is expected to be especially useful for creating 
+textures where one may prefer to closely control the density of 
+events rather than specifying the exact times at which events are 
+triggered. 
+
+4.6 More?
+The above are some examples of simple interfaces that can produce 
+complex music over a network of collaborators. It is possible to program 
+more such graphical interfaces using the open-source Audicle framework. 
+In addition, the mapping suggestions and time-based behavior described 
+above are optional for each graphical interface and can be easily 
+modified by changing the ChucK code on the client and server sides. 
+Thus, these interfaces are flexible on the visual and auditory levels as 
+well as in the interactions between the two. 
+
+
+XXXX. Conclusions and Future Work
+We have demonstrated a variety of graphical interfaces for creating 
+music collaboratively. The simplicity of these interfaces allows new 
+users to grasp the rules quickly and start making music right away. At 
+the same time, the strong central synchronization facilitates 
+collaboration, giving rise to more complex pieces than would be expected 
+from the basic rules for the clients or server. Thus, these interfaces 
+produce a form of _emergent music_. 
+
+The range of interfaces also highlights the extensibility of the Audicle 
+programming environment and how cool ChucK is. Future work could involve 
+creating an infinite number of new interfaces, but we will leave that 
+for the reader to pursue. What else can be future work? :| 

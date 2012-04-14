@@ -1,0 +1,110 @@
+
+Audicle: A Context-Sensitive, On-the-fly Audio Programming Framework/Ecosystem
+
+Ge Wang and Perry R. Cook
+
+Department of Computer Science (Also Music)
+Princeton University
+
+{gewang,prc}@cs.princeton.edu
+
+---
+Abstract
+
+---
+1. Introduction
+
+  what is it?
+  - an oracle speaks, an audicle listens...
+  - a context sensitive, on-the-fly audio programming environment
+    - context sensitive: smart editor
+    - on-the-fly: run-time programmable
+    - all of the below: editor/compiler/virtual machine/debugger
+  - compiler and vm based on ChucK
+  - a differet audio programming mentality
+  - tightly integrated with a computer music programming language, ChucK
+    a strength,
+
+  based on chuck 
+
+  1.1 Motivation
+      - complete the loop: development | runtime
+      - provide a more fundamental level of interactivity: on-the-fly programming
+      - on-the-fly hyper-realtime performance and composition environment
+      - a new way to visualize the audio programming process
+      - formal semantic mapping graphical representation for audio concurrent programming
+      - extend high level of programmability over time and concurrency as found in ChucK
+      - listener that understands deep structure of program
+        and use this information to help develop and debug
+      - union of smart editor/compiler/virtual machine/debugger
+      - performance and composition environment
+
+      - highly shred management
+      - view of time
+      - real-time graphics
+
+---
+2. Background
+
+  programming enironments, what do they provide?
+
+  Existing Framework
+      - max
+      - aura?
+      - matlab
+      - spice
+      - ptolemy
+      - soundium 2
+      - vhdl
+
+---
+3. ChucK + On-the-fly Programming
+
+  3.1 ChucK Properties
+      - ChucK operator : visual, highly directional
+      - timing mechanism : embedded in the language, precise
+      - concurrency : use timing mechnanism
+
+  3.2 On-the-fly Programming
+      - On-the-fly Programming: use code an expressive instrument.
+      - pictures
+      - on-the-fly counterpoint
+      - the perils of on-the-fly programming
+
+---
+4. Audicle
+
+  4.1 Design
+      - the Audicle
+      - Audicube: an infinite audio programming cube
+  4.2 Subsystems / Faces of the Audicube
+      - graphical concurrent programming
+      - shred viewer, manager
+      - deep structure of the program
+      - time viewer
+      - editor/compiler/vm/debugger
+      - graphics rendering window
+      - tabula rasa : "blank slate"
+
+  4.3 Features
+      - different views of program
+        - concurrent view
+        - syntax tree view
+        - timeline view
+
+---
+5. Audicle Properties
+  - formal correspondence of graphical representation and syntax
+  - formal correspondence of time and concurrency
+
+---
+6. Audicle Implementation
+
+---
+6. Conclusion and Future Work
+  - code faster
+  - debug faster
+  - unify development and runtime into same runtime framework
+  - audicle is a framework for on-the-fly programming and also visualizing the process
+
+7. References

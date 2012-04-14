@@ -1,0 +1,175 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 39;
+	objects = {
+		025B24B4072789F80045D608 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = audicle.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		027D8841072646A500ABF848 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = audicle_geometry.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		027D8842072646A500ABF848 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = audicle_geometry.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		02972B310726E55C009F1DCD = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = audicle_utils.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		02972B340726E567009F1DCD = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = audicle_utils.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		02D726D8072638F800812B85 = {
+			children = (
+				02D726E20726391C00812B85,
+				02D726E90726391C00812B85,
+				025B24B4072789F80045D608,
+				02D726E40726391C00812B85,
+				02D726E30726391C00812B85,
+				027D8842072646A500ABF848,
+				027D8841072646A500ABF848,
+				02D726E60726391C00812B85,
+				02D726E50726391C00812B85,
+				02D726E70726391C00812B85,
+				02972B340726E567009F1DCD,
+				02972B310726E55C009F1DCD,
+			);
+			isa = PBXGroup;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		02D726DA072638F800812B85 = {
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			isa = PBXBuildStyle;
+			name = Development;
+		};
+		02D726DB072638F800812B85 = {
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			isa = PBXBuildStyle;
+			name = Deployment;
+		};
+		02D726DC072638F800812B85 = {
+			buildSettings = {
+			};
+			buildStyles = (
+				02D726DA072638F800812B85,
+				02D726DB072638F800812B85,
+			);
+			hasScannedForEncodings = 1;
+			isa = PBXProject;
+			mainGroup = 02D726D8072638F800812B85;
+			projectDirPath = "";
+			targets = (
+				02D726EF07263A8100812B85,
+			);
+		};
+		02D726E20726391C00812B85 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = audicle_def.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		02D726E30726391C00812B85 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = audicle_face.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		02D726E40726391C00812B85 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = audicle_face.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		02D726E50726391C00812B85 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = audicle_gfx.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		02D726E60726391C00812B85 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = audicle_gfx.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		02D726E70726391C00812B85 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = audicle_main.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		02D726E90726391C00812B85 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = audicle.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		02D726EF07263A8100812B85 = {
+			buildArgumentsString = osx;
+			buildPhases = (
+			);
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = audicle;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+			};
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			isa = PBXLegacyTarget;
+			name = audicle;
+			passBuildSettingsInEnvironment = 1;
+			productName = audicle;
+		};
+	};
+	rootObject = 02D726DC072638F800812B85;
+}

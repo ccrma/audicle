@@ -1,0 +1,19 @@
+
+CC=gcc
+INCLUDES=-I../../../chuck_dev/src/
+FLAGS=-D__WINDOWS_DS__ $(INCLUDES) -O3 -c
+LIBS=-ldxguid -ldsound -lm -lstdc++ -lwinmm -lopengl32 -lglu32 -lglut32
+
+OBJS= audicle_face.o audicle_geometry.o audicle_gfx.o audicle.o audicle_main.o
+
+audicle: $(OBJS)
+	gcc -o audicle $(OBJS) $(LIBS)
+
+.o: $*.h
+        
+.c.o: $*.h $*.c
+	$(CC) $(FLAGS) $*.c
+        
+.cpp.o: $*.h $*.cpp
+	$(CC) $(FLAGS) $*.cpp
+

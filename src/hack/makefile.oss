@@ -1,0 +1,19 @@
+
+CC=gcc
+INCLUDES=-I../../../chuck_dev/src/
+FLAGS=-D__MACOSX_CORE__ -O3 -c
+LIBS=-framework CoreAudio -framework CoreMIDI -framework CoreFoundation -framework OpenGL -framework GLUT -framework AppKit -lstdc++ -lm
+
+OBJS= audicle_face.o audicle_gfx.o audicle_geometry.o audicle_utils.o \
+	audicle.o audicle_main.o 
+
+audicle: $(OBJS)
+	gcc -o audicle $(OBJS) $(LIBS)
+
+.o: $*.h
+        
+.c.o: $*.h $*.c
+	$(CC) $(FLAGS) $(INCLUDES) $*.c
+        
+.cpp.o: $*.h $*.cpp
+	$(CC) $(FLAGS) $(INCLUDES) $*.cpp

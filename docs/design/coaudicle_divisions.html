@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+		"http://www.w3.org/TR/REC-html40/strict.dtd">
+<HTML>
+<HEAD>
+	<TITLE>Tables</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<!-- "G_PLUGIN_FOR_HTML" -->
+<STYLE type="text/css">
+TT {
+	font-family: courier;
+}
+TD {
+	font-family: helvetica, sans-serif;
+}
+CAPTION {
+	font-family: helvetica, sans-serif;
+	font-size: 14pt;
+	text-align: left;
+}
+</STYLE>
+</HEAD>
+<BODY>
+<P><TABLE border=1>
+<CAPTION>Sheet1</CAPTION>
+<TR>
+<TD ></TD>
+<TD  valign="bottom"  align="left" ><B>viewing buffers</B></TD>
+<TD  valign="bottom"  align="left" ><B>editing buffers</B></TD>
+<TD  valign="bottom"  align="left" ><B>streaming audio</B></TD>
+<TD  valign="bottom"  align="left" ><B>execute code</B></TD>
+<TD  valign="bottom"  align="left" ><B>debug</B></TD>
+<TD  valign="bottom"  align="left" ><B>chat</B></TD>
+<TD  valign="bottom"  align="left" ><B>user interface</B></TD>
+<TD  valign="bottom"  align="left" ><B>vm status</B></TD>
+</TR>
+<TR>
+<TD  valign="bottom"  align="left" >(Co)Audicle</TD>
+<TD  valign="bottom"  align="left" >render other user buffers</TD>
+<TD  valign="bottom"  align="left" >user interaction / cut and paste from external buffers</TD>
+<TD  valign="bottom"  align="left" >audio selection and control</TD>
+<TD  valign="bottom"  align="left" >initiate execution request</TD>
+<TD  valign="bottom"  align="left" >display error messages, highlight lines</TD>
+<TD  valign="bottom"  align="left" >render chat log / enter&amp;send messages</TD>
+<TD  valign="bottom"  align="left" >view of open buffers, arrangement, editing position.  Render appropriate state for other users</TD>
+<TD  valign="bottom"  align="left" >display status, errors</TD>
+</TR>
+<TR>
+<TD  valign="bottom"  align="left" >Session</TD>
+<TD  valign="bottom"  align="left" >maintain local 'view' of buffer data</TD>
+<TD  valign="bottom"  align="left" >send edits to server  /receive edits from other buffers</TD>
+<TD  valign="bottom"  align="left" >receive streaming audio</TD>
+<TD  valign="bottom"  align="left" >send execution request to server</TD>
+<TD  valign="bottom"  align="left" >receive error list</TD>
+<TD  valign="bottom"  align="left" >receive/send messages</TD>
+<TD  valign="bottom"  align="left" >store view state for session, request view state for other sessions</TD>
+<TD  valign="bottom"  align="left" >send request, receive data</TD>
+</TR>
+<TR>
+<TD  valign="bottom"  align="left" >( communication layer )</TD>
+<TD ></TD>
+<TD ></TD>
+<TD ></TD>
+<TD ></TD>
+<TD ></TD>
+<TD ></TD>
+<TD ></TD>
+<TD ></TD>
+</TR>
+<TR>
+<TD  valign="bottom"  align="left" >Server</TD>
+<TD  valign="bottom"  align="left" >store 'view' of buffers on connected sessions</TD>
+<TD  valign="bottom"  align="left" >synchronize among connected sessions</TD>
+<TD  valign="bottom"  align="left" >distribute audio</TD>
+<TD  valign="bottom"  align="left" >receive exe request, assert buffer sync, and pass to chuck</TD>
+<TD  valign="bottom"  align="left" >send error back to initiator of exe request</TD>
+<TD  valign="bottom"  align="left" >receive and distribute messages / 'own' log</TD>
+<TD  valign="bottom"  align="left" >synchronize view/user state info</TD>
+<TD  valign="bottom"  align="left" >manage requested, report to session</TD>
+</TR>
+<TR>
+<TD  valign="bottom"  align="left" >Chuck</TD>
+<TD ></TD>
+<TD ></TD>
+<TD  valign="bottom"  align="left" >produce audio and send to server</TD>
+<TD  valign="bottom"  align="left" >execute code, report messages</TD>
+<TD  valign="bottom"  align="left" >&lt;---</TD>
+<TD ></TD>
+<TD ></TD>
+<TD  valign="bottom"  align="left" >poll vm</TD>
+</TR>
+<TR>
+<TD  valign="bottom"  align="left" >Tracker?</TD>
+<TD ></TD>
+<TD ></TD>
+<TD ></TD>
+<TD ></TD>
+<TD ></TD>
+<TD ></TD>
+<TD ></TD>
+<TD ></TD>
+</TR>
+</TABLE>
+</BODY>
+</HTML>

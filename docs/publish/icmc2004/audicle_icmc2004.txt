@@ -1,0 +1,79 @@
+
+Audicle: A Context-Sensitive, On-the-fly Audio Programming Framework/Ecosystem
+
+Ge Wang and Perry R. Cook
+
+Department of Computer Science (Also Music)
+Princeton University
+
+{gewang,prc}@cs.princeton.edu
+
+---
+Abstract
+
+---
+1. Introduction
+
+  what is it?
+
+  based on chuck 
+
+  1.1 Goals
+      - graphical representation for audio concurrent programming
+      - highly shred management
+      - view of time
+      - high level of programmability as found in ChucK
+      - listener that understands deep structure of program
+        and use this information to help develop and debug
+      - union of smart editor/compiler/virtual machine/debugger
+      - performance and composition environment
+      - real-time graphics
+
+---
+2. Motivation and Background
+
+  2.1 Motivation
+      - on-the-fly hyper-realtime performance and composition environment
+
+  2.2 On-the-fly programming
+  2.3 Existing Framework
+      - max
+      - soundium 2
+      - ptolemy
+      - spice
+      - vhdl
+
+---
+3. ChucK
+
+---
+4. Audicle
+
+  4.1 Design
+      - the Audicle
+      - Audicube: an infinite audio programming cube
+  4.2 Subsystems / Faces of the Audicube
+      - graphical concurrent programming
+      - shred viewer, manager
+      - deep structure of the program
+      - time viewer
+      - editor/compiler/vm/debugger
+      - graphics rendering window
+
+  4.3 Features
+      - different views of program
+        - concurrent view
+        - syntax tree view
+        - timeline view
+
+---
+5. Audicle Properties
+  - formal correspondence of graphical representation and syntax
+  - formal correspondence of time and concurrency
+
+---
+6. Audicle Implementation
+
+---
+7. Conclusion and Future Work
+

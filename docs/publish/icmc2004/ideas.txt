@@ -1,0 +1,86 @@
+
+audicle ideas:
+
+---
+what is it exactly?
+
+audicle is about the runtime state of the language
+it is a synthesis of an editor/compiler/virtual machine runtime/debugger
+completes the loop
+language/code/runtime
+completes the loop
+is is a new class of tools for audio synthesis, performance, and composition
+
+---
+faces of audicube
+
+- time view: timeline of events in ChucK/audicle
+- shred management: add/remove/replace/suspend shreds on-the-fly
+- deep structure: of program, tree, 3D traversal
+- code: this is the editor, both develop and runtime.  in fact, this
+  boundary is fundamentally blurred in the audicle.
+- cockpit:
+    cpu load
+    I/O
+    shreds
+    audio stats
+    analysis output
+    dancing man
+- ATM: withdraw your dough from this face
+
+---
+the audicle itself is in the language
+
+---
+features of audicle
+
+- it is useful to be able to show properties of the language and system, and indeed, we show several  properties - some extended from ChucK
+- formal, strong correspondence of graphical representation to concurrent audio code
+- kitchen-sink is good because
+    reduce intermediate redundancy and latency
+    wyciwyg
+    information from earlier phases are available to later, runtime phases
+    on-the-fly demands it
+
+---
+what is a good name?
+
+- hackarium
+- hack tank
+- ecosystem
+- zone
+- free-fall
+- manifesto
+- exodus
+- delirium
+- arena
+- atrium
+- infusion
+- labyrinth
+- vacuum
+- xochiquetzal
+- automonument
+- space
+- dataspace
+- programspace
+- runtimespace
+- audiospace
+- scape
+- program-entality
+- mentality
+- environmentality
+
+
+---
+- define concurrent code to graphical representation
+- make guis for all the faces
+
+---
+todo:
+
+- find a name, ask manman
+- ptolemy from berkeley
+- systems that translate code to graphs, and vice versa
+    spice
+    vhdl
+- dobo graph representation

@@ -1,0 +1,40 @@
+
+CC=gcc
+CHUCK_DIR=../helpus
+INCLUDES=-I$(CHUCK_DIR)
+FLAGS=-D__MACOSX_CORE__ -O3 -c
+LIBS=-framework CoreAudio -framework CoreMIDI -framework CoreFoundation -framework OpenGL -framework GLUT -framework AppKit -framework Carbon -lstdc++ -lm
+
+ifneq ($(USE_FREETYPE_LIBS),)
+FLAGS += -D_USE_FTGL_FONTS_
+FREETYPE_INCLUDES = -I../ftgl_lib/FTGL/include -I/usr/local/include/freetype2
+FREETYPE_LIBS = -L../ftgl_lib/FTGL/mac/build -lftgl -lfreetype -lz
+LIBS+= $(FREETYPE_LIBS)
+endif 
+
+BASE_OBJS= audicle_event.o audicle_face.o audicle_gfx.o audicle_geometry.o audicle_font.o\
+	audicle_nexus.o audicle_utils.o audicle.o audicle_main.o
+	
+UI_OBJS= audicle_ui_base.o audicle_ui_windowing.o audicle_text_buffer.o\
+	audicle_ui_editor.o audicle_ui_parser.o audicle_ui_coding.o audicle_ui_console.o
+
+FACE_OBJS= audicle_face_editor.o audicle_face_vmspace.o audicle_face_shredder.o \
+	audicle_face_tnt.o audicle_face_compiler.o audicle_elcidua.o
+
+COAUDICLE_OBJS= coaudicle_avatar.o rgbhsl.o 
+
+OBJS= $(BASE_OBJS) $(UI_OBJS) $(FACE_OBJS) $(COAUDICLE_OBJS)
+
+audicle: $(OBJS)
+	rm -f $(CHUCK_DIR)/chuck_main.o; gcc -o audicle $(OBJS) $(CHUCK_DIR)/*.o $(LIBS)
+
+.o: $*.h
+        
+.c.o: $*.h $*.c
+	$(CC) $(FLAGS) $(INCLUDES) $*.c
+        
+.cpp.o: $*.h $*.cpp
+	$(CC) $(FLAGS) $(INCLUDES) $*.cpp
+
+audicle_font.o : audicle_font.h audicle_font.cpp
+	$(CC) $(FLAGS) $(INCLUDES) $(FREETYPE_INCLUDES) audicle_font.cpp

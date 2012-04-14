@@ -1,0 +1,70 @@
+
+SYS_FLAGS	=-D__PLATFORM_MACOSX__
+
+GL_INC_FLAGS    =
+GL_LIB_FLAGS    =-framework OpenGL
+GLU_LIB_FLAGS   =$(GL_LIB_FLAGS)
+
+GLUT_INC_FLAGS  =
+GLUT_LIB_FLAGS  =$(GL_LIB_FLAGS) -framework GLUT 
+
+
+CHUCK_SRC_DIR   =../../../chuck_dev/src
+INCLUDES	=-I$(CHUCK_SRC_DIR)
+
+CHUCK_OBJS	=chuck_absyn.o chuck_errmsg.o chuck_otf.o chuck_symbol.o chuck_table.o chuck_utils.o chuck.tab.o chuck.yy.o util_network.o 
+COMMON_OBJS	=platform.o dirscan.o thread.o geometry.o windowing.o
+TEXT_OBJS	=texteditor.o textbuffer.o 
+AUDI_OBJS	=audicle_coding.o audicle_base.o parse_gui.o $(CHUCK_OBJS) $(COMMON_OBJS) $(TEXT_OBJS)
+
+OBJS		=text_main.o $(AUDI_OBJS) 
+CKX_OBJS	=audicle_ckx.o $(AUDI_OBJS) 
+TH_OBJS		=text_threaded.o $(AUDI_OBJS) 
+RV_OBJS		=text_reverse.o $(AUDI_OBJS)
+
+CC		=gcc
+FLAGS 		=$(SYS_FLAGS) $(INCLUDES) -O3 -g -c 
+LIBS		=-framework Foundation -framework AppKit -framework Carbon $(GLUT_LIB_FLAGS) -lstdc++
+CKX_FLAGS	=-O3 -g -bundle $(SYS_FLAGS) $(INCLUDES) 
+
+all: texteditor
+
+editor : texteditor 
+
+ckx: audicle.ckx
+
+texteditor: $(OBJS)
+	$(CC) -o texteditor $(OBJS) $(LIBS)
+
+threditor: $(TH_OBJS)
+	$(CC) -o threditor $(TH_OBJS) $(LIBS)
+
+reveditor : $(RV_OBJS)
+	$(CC) -o reveditor $(RV_OBJS) $(LIBS)
+
+audicle.ckx: $(CKX_OBJS)
+	$(CC) $(CKX_FLAGS) -o audicle.ckx $(CKX_OBJS) $(LIBS)
+
+chuck%.o : $(CHUCK_SRC_DIR)/chuck%.cpp $(CHUCK_SRC_DIR)/chuck%.h
+	$(CC) $(FLAGS) $<
+
+chuck%.o : $(CHUCK_SRC_DIR)/chuck%.c
+	$(CC) $(FLAGS) $<
+
+util_%.o : $(CHUCK_SRC_DIR)/util_%.c $(CHUCK_SRC_DIR)/util_%.h
+	$(CC) $(FLAGS) $<
+
+%.o : %.cpp %.h sys.h
+	$(CC) $(FLAGS) $< 
+
+text_main.o: text_main.cpp sys.h
+	$(CC) $(FLAGS) text_main.cpp 
+
+text_threaded.o: text_threaded.cpp thread.h 
+	$(CC) $(FLAGS) text_threaded.cpp 
+
+text_reverse.o: text_reverse.cpp thread.h 
+	$(CC) $(FLAGS) text_reverse.cpp 
+
+clean:
+	rm -f *~ *.o

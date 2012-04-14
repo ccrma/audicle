@@ -1,0 +1,218 @@
+# point this at chuck source:
+CHUCK_DIR=../../../chuck_dev/v2
+
+CC=gcc
+INCLUDES=-I$(CHUCK_DIR) -I/usr/include/directx
+FLAGS=-D__WINDOWS_DS__ -D__WINDOWS_PTHREAD__ -D__CHUCK_STAT_TRACK__ -O3 -c $(INCLUDES)
+LIBS=-lgl -lglu -lglut -lstdc++ -lm -lpthread -ldl -ldsound -ldxguid -ldxerr
+SF_OBJ=util_sndfile.o
+
+#-----------------------------------------------------------------------------
+# by default on linux, ChucK uses the pre-configured libsndfile...
+# uncomment the next 3 lines to use the native libsndfile.
+#-----------------------------------------------------------------------------
+#FLAGS+= -D__CK_SNDFILE_NATIVE__
+#LIBS+= -lsndfile
+#SF_OBJ=
+
+ifneq ($(USE_FREETYPE_LIBS),)
+FLAGS += -D_USE_FTGL_FONTS_
+FREETYPE_INCLUDES = -I../ftgl_lib/FTGL/include -I/usr/local/include/freetype2
+FREETYPE_LIBS = -L../ftgl_lib/FTGL/mac/build -lftgl -lfreetype -lz
+LIBS+= $(FREETYPE_LIBS)
+endif 
+
+BASE_OBJS= audicle_event.o audicle_face.o audicle_gfx.o audicle_geometry.o audicle_font.o \
+	audicle_nexus.o audicle_utils.o audicle.o audicle_main.o audicle_import.o
+	
+UI_OBJS= audicle_ui_base.o audicle_ui_windowing.o audicle_text_buffer.o \
+	audicle_ui_editor.o audicle_ui_parser.o audicle_ui_coding.o audicle_ui_console.o
+
+FACE_OBJS= audicle_face_editor.o audicle_face_vmspace.o audicle_face_shredder.o \
+	audicle_face_tnt.o audicle_face_compiler.o audicle_face_groove.o \
+	audicle_face_mouse.o audicle_face_skot.o audicle_elcidua.o
+
+COAUDICLE_OBJS= coaudicle_avatar.o coaudicle_chat.o coaudicle_net_session.o \
+	coaudicle_protocol.o coaudicle_ui_coding.o coaudicle_view.o co.o rgbhsl.o \
+	audicle_session_manager.o audicle_net.o
+
+CHUCK_OBJS= chuck.tab.o chuck.yy.o chuck_absyn.o chuck_parse.o chuck_errmsg.o \
+	chuck_frame.o chuck_symbol.o chuck_table.o chuck_utils.o \
+	chuck_vm.o chuck_instr.o chuck_scan.o chuck_type.o chuck_emit.o \
+	chuck_compile.o chuck_dl.o chuck_oo.o chuck_lang.o chuck_ugen.o \
+	chuck_otf.o chuck_stats.o chuck_bbq.o chuck_shell.o \
+	chuck_globals.o digiio_rtaudio.o hidio_sdl.o midiio_rtmidi.o \
+	rtaudio.o rtmidi.o ugen_osc.o ugen_filter.o ugen_stk.o ugen_xxx.o \
+	uana_xform.o uana_extract.o \
+	ulib_machine.o ulib_math.o ulib_std.o ulib_opsc.o util_buffers.o \
+	util_math.o util_network.o util_raw.o util_string.o util_thread.o \
+	util_xforms.o util_opsc.o util_console.o util_hid.o $(SF_OBJ)
+    
+OBJS= $(BASE_OBJS) $(UI_OBJS) $(FACE_OBJS) $(COAUDICLE_OBJS) $(CHUCK_OBJS)
+
+audicle: $(OBJS)
+	gcc -o audicle $(OBJS) $(LIBS)
+
+chuck.tab.c: $(CHUCK_DIR)/chuck.y
+	$(YACC) -dv -b chuck $(CHUCK_DIR)/chuck.y
+
+chuck.yy.c: $(CHUCK_DIR)/chuck.lex
+	$(LEX) -ochuck.yy.c $(CHUCK_DIR)/chuck.lex
+
+chuck.tab.h: chuck.tab.c
+	echo "chuck.tab.h was created at the same time as chuck.tab.c"
+
+chuck_absyn.o: $(CHUCK_DIR)/chuck_absyn.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_absyn.cpp
+
+chuck_parse.o: $(CHUCK_DIR)/chuck_parse.h $(CHUCK_DIR)/chuck_parse.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_parse.cpp
+
+chuck_scan.o: $(CHUCK_DIR)/chuck_scan.h $(CHUCK_DIR)/chuck_scan.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_scan.cpp
+
+chuck_type.o: $(CHUCK_DIR)/chuck_type.cpp $(CHUCK_DIR)/chuck_type.h
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_type.cpp
+
+chuck_emit.o: $(CHUCK_DIR)/chuck_emit.cpp $(CHUCK_DIR)/chuck_emit.h
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_emit.cpp
+
+chuck_compile.o: $(CHUCK_DIR)/chuck_compile.h $(CHUCK_DIR)/chuck_compile.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_compile.cpp
+
+chuck_symbol.o: $(CHUCK_DIR)/chuck_symbol.cpp $(CHUCK_DIR)/chuck_symbol.h
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_symbol.cpp
+
+chuck_frame.o: $(CHUCK_DIR)/chuck_frame.h $(CHUCK_DIR)/chuck_frame.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_frame.cpp
+
+chuck_errmsg.o: $(CHUCK_DIR)/chuck_errmsg.cpp $(CHUCK_DIR)/chuck_errmsg.h
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_errmsg.cpp
+
+chuck_utils.o: $(CHUCK_DIR)/chuck_utils.cpp $(CHUCK_DIR)/chuck_utils.h
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_utils.cpp
+
+chuck_table.o: $(CHUCK_DIR)/chuck_table.cpp $(CHUCK_DIR)/chuck_table.h
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_table.cpp
+
+chuck_instr.o: $(CHUCK_DIR)/chuck_instr.h $(CHUCK_DIR)/chuck_instr.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_instr.cpp
+
+chuck_vm.o: $(CHUCK_DIR)/chuck_vm.h $(CHUCK_DIR)/chuck_vm.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_vm.cpp
+
+chuck_oo.o: $(CHUCK_DIR)/chuck_oo.h $(CHUCK_DIR)/chuck_oo.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_oo.cpp
+
+chuck_lang.o: $(CHUCK_DIR)/chuck_lang.h $(CHUCK_DIR)/chuck_lang.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_lang.cpp
+
+chuck_ugen.o: $(CHUCK_DIR)/chuck_ugen.cpp $(CHUCK_DIR)/chuck_ugen.h
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_ugen.cpp
+
+chuck_dl.o: $(CHUCK_DIR)/chuck_dl.h $(CHUCK_DIR)/chuck_dl.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_dl.cpp
+
+chuck_otf.o: $(CHUCK_DIR)/chuck_otf.h $(CHUCK_DIR)/chuck_otf.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_otf.cpp
+
+chuck_stats.o: $(CHUCK_DIR)/chuck_stats.h $(CHUCK_DIR)/chuck_stats.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_stats.cpp
+
+chuck_bbq.o: $(CHUCK_DIR)/chuck_bbq.cpp $(CHUCK_DIR)/chuck_bbq.h
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_bbq.cpp
+
+chuck_shell.o: $(CHUCK_DIR)/chuck_shell.cpp $(CHUCK_DIR)/chuck_shell.h
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_shell.cpp
+
+chuck_globals.o: $(CHUCK_DIR)/chuck_globals.h $(CHUCK_DIR)/chuck_globals.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/chuck_globals.cpp
+
+digiio_rtaudio.o: $(CHUCK_DIR)/digiio_rtaudio.h $(CHUCK_DIR)/digiio_rtaudio.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/digiio_rtaudio.cpp
+
+hidio_sdl.o: $(CHUCK_DIR)/hidio_sdl.h $(CHUCK_DIR)/hidio_sdl.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/hidio_sdl.cpp
+
+midiio_rtmidi.o: $(CHUCK_DIR)/midiio_rtmidi.h $(CHUCK_DIR)/midiio_rtmidi.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/midiio_rtmidi.cpp
+
+rtaudio.o: $(CHUCK_DIR)/rtaudio.h $(CHUCK_DIR)/rtaudio.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/rtaudio.cpp
+
+rtmidi.o: $(CHUCK_DIR)/rtmidi.h $(CHUCK_DIR)/rtmidi.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/rtmidi.cpp
+
+ugen_osc.o: $(CHUCK_DIR)/ugen_osc.h $(CHUCK_DIR)/ugen_osc.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/ugen_osc.cpp
+
+ugen_xxx.o: $(CHUCK_DIR)/ugen_xxx.h $(CHUCK_DIR)/ugen_xxx.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/ugen_xxx.cpp
+    
+ugen_filter.o: $(CHUCK_DIR)/ugen_filter.h $(CHUCK_DIR)/ugen_filter.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/ugen_filter.cpp
+
+ugen_stk.o: $(CHUCK_DIR)/ugen_stk.h $(CHUCK_DIR)/ugen_stk.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/ugen_stk.cpp
+
+uana_xform.o: $(CHUCK_DIR)/uana_xform.h $(CHUCK_DIR)/uana_xform.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/uana_xform.cpp
+
+uana_extract.o: $(CHUCK_DIR)/uana_extract.h $(CHUCK_DIR)/uana_extract.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/uana_extract.cpp
+
+ulib_machine.o: $(CHUCK_DIR)/ulib_machine.h $(CHUCK_DIR)/ulib_machine.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/ulib_machine.cpp
+
+ulib_math.o: $(CHUCK_DIR)/ulib_math.h $(CHUCK_DIR)/ulib_math.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/ulib_math.cpp
+
+ulib_std.o: $(CHUCK_DIR)/ulib_std.h $(CHUCK_DIR)/ulib_std.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/ulib_std.cpp
+
+ulib_opsc.o: $(CHUCK_DIR)/ulib_opsc.h $(CHUCK_DIR)/ulib_opsc.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/ulib_opsc.cpp
+
+util_buffers.o: $(CHUCK_DIR)/util_buffers.h $(CHUCK_DIR)/util_buffers.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/util_buffers.cpp
+
+util_console.o: $(CHUCK_DIR)/util_console.h $(CHUCK_DIR)/util_console.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/util_console.cpp
+
+util_hid.o: $(CHUCK_DIR)/util_hid.h $(CHUCK_DIR)/util_hid.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/util_hid.cpp
+
+util_math.o: $(CHUCK_DIR)/util_math.h $(CHUCK_DIR)/util_math.c
+	$(CC) $(FLAGS) $(CHUCK_DIR)/util_math.c
+
+util_network.o: $(CHUCK_DIR)/util_network.h $(CHUCK_DIR)/util_network.c
+	$(CC) $(FLAGS) $(CHUCK_DIR)/util_network.c
+
+util_opsc.o: $(CHUCK_DIR)/util_opsc.h $(CHUCK_DIR)/util_opsc.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/util_opsc.cpp
+
+util_raw.o: $(CHUCK_DIR)/util_raw.h $(CHUCK_DIR)/util_raw.c
+	$(CC) $(FLAGS) $(CHUCK_DIR)/util_raw.c
+
+util_string.o: $(CHUCK_DIR)/util_string.h $(CHUCK_DIR)/util_string.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/util_string.cpp
+
+util_thread.o: $(CHUCK_DIR)/util_thread.h $(CHUCK_DIR)/util_thread.cpp
+	$(CC) $(FLAGS) $(CHUCK_DIR)/util_thread.cpp
+
+util_xforms.o: $(CHUCK_DIR)/util_xforms.h $(CHUCK_DIR)/util_xforms.c
+	$(CC) $(FLAGS) $(CHUCK_DIR)/util_xforms.c
+
+util_sndfile.o: $(CHUCK_DIR)/util_sndfile.h $(CHUCK_DIR)/util_sndfile.c
+	$(CC) $(FLAGS) $(CHUCK_DIR)/util_sndfile.c
+
+.o: $*.h
+        
+.c.o: $*.h $*.c
+	$(CC) $(FLAGS) $*.c
+        
+.cpp.o: $*.h $*.cpp
+	$(CC) $(FLAGS) $*.cpp
+
+audicle_font.o : audicle_font.h audicle_font.cpp
+	$(CC) $(FLAGS) $(FREETYPE_INCLUDES) audicle_font.cpp

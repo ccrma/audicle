@@ -1,0 +1,190 @@
+Building Collaborative Graphical interFaces in the Audicle
+
+ABSTRACT
+this paper is about (besides nime): 
+simple graphical interfaces for complex and strongly-timed musical expression 
+collaborative something (local area, ensemble setting)
+the audicle and how easy it is to extend it in different ways.
+chuck
+case study
+
+KEYWORDS
+graphical interfaces, collaboration, networking,
+computer music ensemble performance, education,
+visualization.
+
+
+1. INTRODUCTION
+see abstract. thanks.
+
+1.1 motivation
+---
+- simple enough that anyone can pick up and use, yet complex enough to generate interesting music/sound (as a group).
+- collaboration in a tightly-timed setting
+- as direct and immediate as possible
+- as precise as possible, even at the cost of resolution
+- limit the individual, enhance the group result
+
+deployment
+---
+- local area computer music ensemble
+- novice and experienced performers
+- students
+
+1.2 enabling collaboration
+
+why would anyone want to do this? yes.
+
+implementation
+---
+- use audicle as framework
+- extend audicle face implement as new face
+- write chuck code to control behavior and sound synthesis
+- network chuck programs using OSC
+- connect to speakers or headphones for sound
+- plug in all power strips to nearest outlet (in some cases this may be on the power strip)
+
+
+2. RELATED WORK
+
+instruments
+---
+midigrid (see nime 2003)
+ixi software
+golan levin ('s works) - audiovisual environment suite
+toshio iwai ('s works)
+http://www.superkids.com/aweb/pages/reviews/music/1/simtunes/merge.shtml
+
+games
+---
+chu chu rocket
+domino rally
+lemmings
+food (salad)
+
+
+4. INTERFACES
+
+single server - many clients
+human controlled, machine synchronized
+
+
+4.1 Color Squares
+
+Given:
+N x M matrix
+Y number of colors
+Theorem 4.1: One needs at least M^Y/2 colors to fill the diagonal of the matrix without looking uncouth when upside down.
+Corollary: the matrix has N x N elements as it cannot have a proper diagonal if M != N
+
+Notes:
+select a color using mouse or using keys 1-9, a-z, (0 and esc reserved for silent color)
+click on matrix element to place the color there
+
+the server program moves through the matrix in any desired manner, including sequential, random, or in any other fashion, in any timing 
+pattern.  This is specified in code in the server chuck program.  the client program is aware of when a particular matrix element is 
+activated and what color was last placed on it and can respond in any programmatic manner to it.
+
+the server code for a sequential pattern looks like this:
+[code]
+
+// value of 8th
+4096::samp => dur T;
+
+// send object
+OscSend xmit;
+// aim the transmitter at our local port 6449
+xmit.setHost( "localhost", 6449 );
+// get pane
+AudicleGroove.pane() @=> AudiclePane @ pane;
+
+int x; int y;
+
+// infinite time loop
+while( true )
+{
+    for( 0 => y; y < pane.height(); y++ )
+    {
+        for( 0 => x; x < pane.width(); x++ )
+        {
+            // start the message...
+            xmit.startMsg( "/colorsqr/synch/clock", "i i" );
+            // transmit x and y of square to active         
+            x => xmit.addInt; y => xmit.addInt;
+            // advance time
+            T => now;
+        }
+    }
+}
+
+client code
+
+// infinite event loop
+while ( true )
+{
+    // wait for event to arrive
+    oe => now;
+
+    // grab the next message from the queue.
+    while( oe.nextMsg() != 0 )
+    {
+        // get x and y
+        oe.getInt() => x;
+        oe.getInt() => y;
+        // set glow
+        pane.setglow( x, y, 1 );
+        // get value
+        pane.getvalue( x, y ) => value;
+        // play the thing
+        play( value );
+    }
+}
+
+each client could have a potentially different mapping.
+
+4.2 Spheres
+
+- multi-view of sphere space
+- one view controls x and yes
+- one view controls z
+- also can have perspective view 
+
+4.3 Mouse Mania
+
+control one entity per host
+- color / shape determines entity speed, direction, dance moves
+control 500 mice running from host to host
+
+4.4 Dominotes
+
+- launching stations which at the discretion of the server, pushes all adjacent dominoes.
+- so the user constructs domino rallies and connects sub-rallies to the launcher when they want to start a chain reaction
+- can select all or some dominoes to restore to upright position.
+- each domino toppling and passing special items in the path of the dominoes can be mapped to any parameter or events at the discretion of 
+  the client (for example it can call machine.crash() or trigger some other musical event)
+- dominotes also allow forks and self-up-right-ing dominoes.
+
+4.5 SaladTosser
+
+- as the name suggests...
+user enters the space as salad components and gets violently tossed.
+can be structured to control density and texture.  there is even an option to pour dressing into the mix.  Different dressings will process 
+the salad in different ways (for example, thousand island, ranch, french, italian, blue cheese, caesar, ketchup, pepper, salt)  Finally, 
+there is a consume option which would gradually empty out the contents until there is silence.
+
+
+5. CASE STUDIES
+
+plork (cite dan's forthcoming paper)
+non specific gamelan taiko fusion band
+
+6. CONCLUSIONS AND FUTURE WORK
+
+this is a framework that can be infinitely extended by lots of different people. if you have code, send it to us. we will put it on the wiki.
+
+7. ACKNOWLEDGEMENTS
+We like to thank Perry Cook.  Thanks.
+
+8. APOLOGIES
+We are sorry for this paper and the research that is "described".
+Thanks. Sorry. (see acknowledgements)

@@ -1,0 +1,23 @@
+
+The AUDICLE: Context-sensitive, On-the-fly Audio Programming Environ/mentality
+
+Ge Wang and Perry Cook
+
+Graphics Lunch, 3.1.2004
+
+In this talk we present and explore the design of an integrated, on-the-fly audio programming environment, as well as how such an integration can fundamentally improve the way we write audio programs. 
+
+The Audicle integrates elements of an editor, compiler, VM, and debugger into a single interactive, run-time system. The traditional "linear" develop-compile-run-debug process is augmented into an interactive one. Programs in such a system can be written, modified, and debugged "on-the-fly" - while the program is running. Additionally, useful intermediate information from one phase (compilation) can be passed on directly to other phases (runtime/debugging), and vice versa. The Audicle is tightly coupled with the ChucK language, and inherits and extends several key properties of ChucK, such as precise audio timing, concurrency, and modularity for on-the-fly programming. 
+
+This talk will examine existing audio programming environments and relavant features of ChucK for on-the-fly programming, and present the design of the Audicle. We will also reason about the properties of the Audicle that address the challenges of run-time audio programming. 
+
+This is joint work with Perry Cook. It is a preliminary presentation of the Audicle. Ideas and feedback from the audience is totally welcomed and encouraged. 
+
+ - SoundLab: http://soundlab.cs.princeton.edu/ 
+ - ChucK: http://chuck.cs.princeton.edu/ 
+ - On-the-fly Programming: http://on-the-fly.cs.princeton.edu/ 
+
+Bio
+
+Ge Wang is a 3rd year graduate student studying with Perry Cook in the sound group. Ge studies and researches real-time programming langauges and systems for audio synthesis, composition, and performance. He is also interested in synthesis techniques and physical modeling. 
+
