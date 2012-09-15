@@ -1,5 +1,5 @@
 # point this at chuck source:
-CHUCK_DIR=../../../chuck_dev/v2
+CHUCK_DIR=chuck
 
 CC=gcc
 INCLUDES=-I$(CHUCK_DIR)
