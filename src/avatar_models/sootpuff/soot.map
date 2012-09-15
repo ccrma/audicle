@@ -1,0 +1,37 @@
+#############################
+#							#
+# veldt character mesh map  #
+# for skinning the agents   #
+#							#
+# this file translates names#
+# from blender mesh elements#
+# to named mesh items in	#
+# veldt's Skin Class		#
+#							#
+# meshfile is special name	#
+# that specifies which		#
+# VRML file you check		#
+#							#
+#############################
+
+meshfile		puff2.wrl
+
+#############################
+#							#
+# multiply defined bone use	#
+# the first block..			#
+#							#
+#'bones'		'meshes'	#	 
+#-veldt-        -blender-   #
+#############################
+
+arm				arm
+eye				eye
+body			body
+leg				leg
+leg_upper		leg_upper
+leg_lower		leg_lower
+head			head
+foot			foot
+
+###########end###############
