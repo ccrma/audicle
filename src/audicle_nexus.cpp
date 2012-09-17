@@ -244,7 +244,7 @@ t_CKUINT process_msg2( Net_Msg * msg, ck_msg_func reply, void * data,
     }
     else
     {
-        fprintf( stderr, "[chuck]: unrecognized incoming command from network: '%i'\n", cmd->type );
+        fprintf( stderr, "[chuck]: unrecognized incoming command from network: '%ld'\n", cmd->type );
         SAFE_DELETE(cmd);
         return 0;
     }
@@ -681,13 +681,13 @@ int main2( int argc, const char ** argv )
     }
 
     // log
-    EM_log( CK_LOG_SYSTEM, "(nexus) starting listener on port: %d...", g_port );
+    EM_log( CK_LOG_SYSTEM, "(nexus) starting listener on port: %ld...", g_port );
 
     // start tcp server
     g_sock = ck_tcp_create( 1 );
     if( !g_sock || !ck_bind( g_sock, g_port ) || !ck_listen( g_sock, 10 ) )
     {
-        fprintf( stderr, "(nexus) cannot bind to tcp port %i...\n", g_port );
+        fprintf( stderr, "(nexus) cannot bind to tcp port %ld...\n", g_port );
         ck_close( g_sock );
         g_sock = NULL;
     }
@@ -890,13 +890,13 @@ int main2b( int argc, const char ** argv )
     }
 
     // log
-    EM_log( CK_LOG_SYSTEM, "starting listener on port: %d...", g_port );
+    EM_log( CK_LOG_SYSTEM, "starting listener on port: %ld...", g_port );
 
     // start tcp server
     g_sock = ck_tcp_create( 1 );
     if( !g_sock || !ck_bind( g_sock, g_port ) || !ck_listen( g_sock, 10 ) )
     {
-        fprintf( stderr, "[chuck]: cannot bind to tcp port %i...\n", g_port );
+        fprintf( stderr, "[chuck]: cannot bind to tcp port %ld...\n", g_port );
         ck_close( g_sock );
         g_sock = NULL;
     }

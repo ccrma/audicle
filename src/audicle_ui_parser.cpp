@@ -195,7 +195,7 @@ tree_Node_::checkIDList( t_CKUINT * stack, t_CKUINT n ) {
 
     if ( n <= 0 ) return 0;
     if ( stack[0] == structID ) { 
-        fprintf(stderr, "stack match %d\n", stack[0]);
+        fprintf(stderr, "stack match %ld\n", stack[0]);
         if ( n > 1 )  { 
             if ( stack[1] == boxID ) { 
                 open = !open;
@@ -213,7 +213,7 @@ tree_Node_::checkIDList( t_CKUINT * stack, t_CKUINT n ) {
             }
         }
         else { 
-            fprintf(stderr, "hit my struct %d!\n", structID);
+            fprintf(stderr, "hit my struct %ld!\n", structID);
             return 1;
         }
     }

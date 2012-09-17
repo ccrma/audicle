@@ -232,8 +232,8 @@ t_CKBOOL AudicleWindow::init( t_CKUINT w, t_CKUINT h, t_CKINT xpos, t_CKINT ypos
 	m_h = h;
 	main()->fullscreen( fullscreen );
 
-#if (GLUT_MACOSX_IMPLEMENTATION >= 2 ) 
-    glutWMCloseFunc ( g_main_die );
+#if( GLUT_MACOSX_IMPLEMENTATION >= 2 )
+    glutWMCloseFunc( g_main_die );
 #endif
     
 //    glEnable( GL_POINT_SMOOTH );
@@ -958,10 +958,10 @@ IDManager::freeStencilID( t_CKUINT i ) {
     if ( i > 0 && i < m_sidnum ) 
     { 
         if ( !m_sids[i] ) 
-            fprintf( stderr, "IDManager::_freeID - error: freeing unbound ID %d\n", i );
+            fprintf( stderr, "IDManager::_freeID - error: freeing unbound ID %ld\n", i );
         m_sids[i] = false;
     }
-    else fprintf( stderr,"IDManager::freeStencilID - ID %d out of range!\n", i);    
+    else fprintf( stderr,"IDManager::freeStencilID - ID %ld out of range!\n", i);    
 }
 
 

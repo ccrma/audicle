@@ -125,10 +125,10 @@ InputEvent::fprint( FILE * fd) const {
         fprintf( fd, "Motion Event : (%f,%f)\n", p[0], p[1] );
         break;
     case ae_input_KEY: 
-        fprintf( fd, "Key Event : key %c (%d) - mods %d - (%f,%f)\n", key, key, mods, p[0], p[1]);
+        fprintf( fd, "Key Event : key %c (%d) - mods %ld - (%f,%f)\n", key, key, mods, p[0], p[1]);
         break;
     case ae_input_SPEC: 
-        fprintf( fd, "Spec Event : key (%d) - mods %d - (%f,%f)\n", key, mods, p[0], p[1]);
+        fprintf( fd, "Spec Event : key (%d) - mods %ld - (%f,%f)\n", key, mods, p[0], p[1]);
         break;
     }
 }

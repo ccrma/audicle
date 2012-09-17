@@ -265,7 +265,7 @@ public:
 
     t_CKBOOL tick_out( SAMPLE sample );
     t_CKBOOL tick_out( SAMPLE l, SAMPLE r );
-    t_CKBOOL tick_out( SAMPLE * samples, t_CKDWORD n );
+    t_CKBOOL tick_out( SAMPLE * samples, t_CKINT n );
 
     void set_redundancy( t_CKUINT n );
     t_CKUINT get_redundancy( );
@@ -312,7 +312,7 @@ public:
     
     t_CKBOOL tick_in( SAMPLE * sample );
     t_CKBOOL tick_in( SAMPLE * l, SAMPLE * r );
-    t_CKBOOL tick_in( SAMPLE * samples, t_CKDWORD n );
+    t_CKBOOL tick_in( SAMPLE * samples, t_CKINT n );
     
     // data
     int m_port;

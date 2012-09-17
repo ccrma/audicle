@@ -308,7 +308,7 @@ AudicleFaceTnT::render_cycle_shred( Shred_Stat * stat, float w, float h ) {
     glEnd();
 
     char buf[256];
-    sprintf(buf, "(%d)", stat->xid );
+    sprintf(buf, "(%ld)", stat->xid );
     glLineWidth( (stat==m_current_shred ) ? 3.0 : 2.0);
     glPushMatrix();
         glTranslated( 0.5 * w, -0.5 * h , 0);
@@ -685,7 +685,7 @@ AudicleFaceTnT::render_shred( Shred_Stat * stat) {
         scol = scol.interp ( Color4D ( 1.0, 1.0, 1.0, 1.0 ) , 0.25 );
 
     static char buf[512];
-    sprintf(buf, " (%03d):", stat->xid );
+    sprintf(buf, " (%03ld):", stat->xid );
 
     double sleading = 1.0;
     double ssize = 1.0;

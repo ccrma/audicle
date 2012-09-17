@@ -388,7 +388,7 @@ t_CKBOOL AudicleServer::start( t_CKINT request_port, t_CKINT update_port )
     m_request_socket.sock = ck_tcp_create( 1 );
     if( !m_request_socket.sock || !ck_bind( m_request_socket.sock, request_port ) || !ck_listen( m_request_socket.sock, 10 ) )
     {
-        fprintf( stderr, "[audicle/server]: cannot bind to tcp port %i...\n", request_port );
+        fprintf( stderr, "[audicle/server]: cannot bind to tcp port %ld...\n", request_port );
         ck_close( m_request_socket.sock );
         m_request_socket.sock = NULL;
         return FALSE;
@@ -406,7 +406,7 @@ t_CKBOOL AudicleServer::start( t_CKINT request_port, t_CKINT update_port )
     m_update_socket.sock = ck_tcp_create( 1 );
     if( !m_update_socket.sock || !ck_bind( m_update_socket.sock, update_port ) || !ck_listen( m_update_socket.sock, 10 ) )
     {
-        fprintf( stderr, "[audicle/server]: cannot bind to tcp port %i...\n", update_port );
+        fprintf( stderr, "[audicle/server]: cannot bind to tcp port %ld...\n", update_port );
         ck_close( m_update_socket.sock );
         m_update_socket.sock = NULL;
         return FALSE;
@@ -561,7 +561,7 @@ t_CKUINT AudicleClient::connect( const string & host, t_CKINT request_port, t_CK
     
     if( !ck_connect( m_request_socket.sock, host.c_str(), request_port ) )
     {
-        fprintf( stderr, "[audicle]: cannot open TCP socket on %s:%i...\n", host.c_str(), request_port );
+        fprintf( stderr, "[audicle]: cannot open TCP socket on %s:%ld...\n", host.c_str(), request_port );
         return FALSE;
     }
     
@@ -583,7 +583,7 @@ t_CKUINT AudicleClient::connect( const string & host, t_CKINT request_port, t_CK
     
     if( !ck_connect( m_update_socket.sock, host.c_str(), update_port ) )
     {
-        fprintf( stderr, "[audicle]: cannot open TCP socket on %s:%i...\n", host.c_str(), update_port );
+        fprintf( stderr, "[audicle]: cannot open TCP socket on %s:%ld...\n", host.c_str(), update_port );
         return FALSE;
     }
     

@@ -143,7 +143,7 @@ void AudicleFace::render_pre( )
 //-----------------------------------------------------------------------------
 t_CKUINT AudicleFace::render( void * data )
 {
-    fprintf( stderr, "[audicle]: face '%i' ('%s') rendering...\n", m_id,
+    fprintf( stderr, "[audicle]: face '%ld' ('%s') rendering...\n", m_id,
              m_name.c_str() );
 
     return TRUE;
@@ -188,20 +188,20 @@ t_CKUINT AudicleFace::on_activate()
 
         case ACTIVE:
         {
-            fprintf( stderr, "[audicle]: face '%i' ('%s') already active...\n",
+            fprintf( stderr, "[audicle]: face '%ld' ('%s') already active...\n",
                      m_id, m_name.c_str() );
             return FALSE;
         }
 
         case ACTIVATING:
         {
-            fprintf( stderr, "[audicle]: face '%i' ('%s') already activating...\n",
+            fprintf( stderr, "[audicle]: face '%ld' ('%s') already activating...\n",
                      m_id, m_name.c_str() );
             return FALSE;
         }
 
         default:
-            fprintf( stderr, "[audicle]: face '%i' ('%s') in illegal state '%i'...\n",
+            fprintf( stderr, "[audicle]: face '%ld' ('%s') in illegal state '%ld'...\n",
                      m_id, m_name.c_str(), m_state );
             assert( FALSE );
     }
@@ -233,22 +233,22 @@ t_CKUINT AudicleFace::on_deactivate( t_CKDUR dur )
 
         case INACTIVE:
         {
-            fprintf( stderr, "[audicle]: face '%i' ('%s') already inactive...\n",
+            fprintf( stderr, "[audicle]: face '%ld' ('%s') already inactive...\n",
                      m_id, m_name.c_str() );
             return FALSE;
         }
 
         case DEACTIVATING:
         {
-            fprintf( stderr, "[audicle]: face '%i' ('%s') already deactivating...\n",
+            fprintf( stderr, "[audicle]: face '%ld' ('%s') already deactivating...\n",
                      m_id, m_name.c_str() );
             return FALSE;
         }
 
         default:
         {
-            fprintf( stderr, "[audicle]: face '%i' ('%s') in illegal state '%i'...\n",
-                     m_id, m_name.c_str() );
+            fprintf( stderr, "[audicle]: face '%ld' ('%s') in illegal state '%ld'...\n",
+                     m_id, m_name.c_str(), m_state );
             assert( FALSE );
         }
     }

@@ -487,7 +487,7 @@ void Agent::print_pov(FILE*fp) {
 void Agent::printme(FILE*fp) 
 { 
          fprintf(fp, "<agent>\n");
-         fprintf(fp, "\t<id>%u</id>\n", (t_CKUINT)this); //yeah, so what?
+         fprintf(fp, "\t<id>%ld</id>\n", (t_CKUINT)this); //yeah, so what?
          fprintf(fp, "\t<pos>%f %f %f</pos>\n", pos[0], pos[1], pos[2]);
          fprintf(fp, "\t<vel>%f %f %f</vel>\n", vel[0], vel[1], vel[2]);
          fprintf(fp, "\t<color>%f %f %f</color>\n", rgb[0], rgb[1], rgb[2] );

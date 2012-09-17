@@ -265,7 +265,7 @@ CodeRevision::name_branch() {
 
         if ( clparen == std::string::npos || oparen == std::string::npos ) 
         { 
-            sprintf (nbuf, "(%d)", ++_branch_count);
+            sprintf (nbuf, "(%ld)", ++_branch_count);
             int dotck = bf.rfind ( ".ck" );
             if ( dotck == std::string::npos ) 
                 return bf + nbuf;
@@ -275,8 +275,8 @@ CodeRevision::name_branch() {
         else 
         {
             std::string current_rev = bf.substr ( oparen+1, clparen-(oparen+1) ) ;
-            if ( current_rev.size() == 0 ) sprintf(nbuf, "%d", ++_branch_count );
-            else sprintf(nbuf, ".%d", ++_branch_count );
+            if ( current_rev.size() == 0 ) sprintf(nbuf, "%ld", ++_branch_count );
+            else sprintf(nbuf, ".%ld", ++_branch_count );
             return ( bf.substr (0, oparen+1) + current_rev + nbuf + bf.substr ( clparen ) );                                          
         }
     }
@@ -343,7 +343,7 @@ ShredInstance::draw() {
     shredbutton.moveto(0,0);
     shredbutton.seth(1.0);
     if ( stat->children.size() ) 
-        sprintf(name, "%d (%d)", procID, stat->children.size() );
+        sprintf(name, "%d (%ld)", procID, stat->children.size() );
     else
         sprintf(name, "%d", procID, stat->children.size() );
     shredbutton.setLabel( (char*)name );
@@ -368,7 +368,7 @@ ShredInstance::draw() {
             if ( stat->children[i]->state == 3 )
                 ndead++;
             else { 
-                sprintf(name, "%d", stat->children[i]->xid );
+                sprintf(name, "%ld", stat->children[i]->xid );
                 shredbutton.setLabel(name);
                 shredbutton.fitLabel();
                 switch ( stat->children[i]->state ) { 
@@ -647,7 +647,7 @@ void dothiswhenmsgfinishes( const Chuck_Msg * msg )
         {
             static Color4D errCol( 1.0, 0.8, 0.8, 0.8 );
             char buffer[256];
-            sprintf( buffer, "cannot remove shred %i", msg->replyA );
+            sprintf( buffer, "cannot remove shred %ld", msg->replyA );
             WindowManager::addAlert( buffer );
         }
     }
@@ -899,7 +899,7 @@ CodeRevision::sendtcp( int replace ) {
             left -= msg.length;
             done += msg.length;
             msg.param2 = left;
-            fprintf(stderr, "sending %d to %d of %s\n", done - msg.length, done, _buffer->filename().c_str());
+            fprintf(stderr, "sending %ld to %ld of %s\n", done - msg.length, done, _buffer->filename().c_str());
             otf_hton( &msg );
             ck_send ( _tcp, (char*)&msg, sizeof(msg) );
         }

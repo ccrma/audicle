@@ -420,7 +420,7 @@ void AudicleFaceMouse::render_panel( )
         glTranslatef( 0.2f, 0.0f, 0.0f );
         glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
         scaleFont( .052 );
-        sprintf( buffer, "%d", x );
+        sprintf( buffer, "%ld", x );
         drawString( buffer );
         glEnable( GL_LIGHTING );
         glPopMatrix();

@@ -381,7 +381,7 @@ void AudicleFaceShredder::render_2( t_CKFLOAT delta )
             case 3: t = "done"; break;
             default: t = "none"; break;
         }
-        sprintf( buffer, "%i - %s - %s - %s - cycle(%i) - acts(%i) - c/a(%.2f) - avg(%.2fms)",
+        sprintf( buffer, "%ld - %s - %s - %s - cycle(%ld) - acts(%ld) - c/a(%.2f) - avg(%.2fms)",
                  s->xid, t, s->name.c_str(), s->source.c_str(), s->cycles, s->activations, s->average_cycles, s->average_ctrl / srate );
 
         // push the name
@@ -419,7 +419,7 @@ void AudicleFaceShredder::render_2( t_CKFLOAT delta )
             case 3: t = "done"; break;
             default: t = "none"; break;
         }
-        sprintf( buffer, "%i - %s - %s - %s - cycle(%i) - acts(%i) - c/a(%.2f) - avg(%.2fms)",
+        sprintf( buffer, "%ld - %s - %s - %s - cycle(%ld) - acts(%ld) - c/a(%.2f) - avg(%.2fms)",
                  s->xid, t, s->name.c_str(), s->source.c_str(), s->cycles, s->activations, s->average_cycles, s->average_ctrl / srate );
 
         // push the name

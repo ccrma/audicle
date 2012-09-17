@@ -208,7 +208,8 @@ public:
    void printEdits() { 
        for ( t_CKUINT i = 0 ; i < _edits.size(); i++ ) 
            _edits[i].print();
-       fprintf(stderr, "edits : %d , undoPos : %d  inUndo %d\n", _edits.size(), _undoPos, _inUndo ); 
+       // 1.0.0.8: commented out
+       // fprintf(stderr, "edits : %d , undoPos : %d  inUndo %d\n", _edits.size(), _undoPos, _inUndo ); 
    }
    
    bool         empty () { return ( nlines() == 1 && line(0).size() == 0 ) ; }

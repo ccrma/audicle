@@ -311,7 +311,7 @@ ConsoleWindow::setCubes() {
     _curLabel.setw( _curLabel.w() * 0.75 );
 
     static char buffer[256];
-    sprintf(buffer, "%d", audi->look_here()+1 );
+    sprintf(buffer, "%ld", audi->look_here()+1 );
     _curDisplay.setLabel( buffer );
 
 

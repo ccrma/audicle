@@ -340,7 +340,7 @@ void AudicleFaceFloor::render_panel( )
 void AudicleFaceFloor::render_credits( )
 {
     char buffer[1024];
-    sprintf( buffer, "[ %d ]", m_credits );
+    sprintf( buffer, "[ %ld ]", m_credits );
 
     glPushMatrix();
     glDisable( GL_LIGHTING );

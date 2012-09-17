@@ -64,7 +64,7 @@
 #include <vector>
 using namespace std;
 
-#define AUDICLE_VERSION "1.0.0.7 (quintesson)"
+#define AUDICLE_VERSION "1.0.0.8 (quintesson)"
 
 void audicle_usage();
 void version();

@@ -59,7 +59,7 @@ void switch_Buffer_Font() {
     
     AudicleFont::releaseFont ( bufferFont );
     buffer_font_index = ( buffer_font_index + 1 ) % AudicleFont::available_fonts().size();
-    fprintf ( stderr, "selecting %s , font %d of %d \n", AudicleFont::available_fonts()[buffer_font_index].c_str(), buffer_font_index, AudicleFont::available_fonts().size() );
+    fprintf ( stderr, "selecting %s , font %d of %ld \n", AudicleFont::available_fonts()[buffer_font_index].c_str(), buffer_font_index, AudicleFont::available_fonts().size() );
     bufferFont = AudicleFont::loadFont ( (char*) AudicleFont::available_fonts()[buffer_font_index].c_str() );
 
 }
@@ -335,7 +335,7 @@ TextContent::sendtcp () {
             left -= msg.length;
             done += msg.length;
             msg.param2 = left;            
-            fprintf(stderr, "sending %d to %d of %s\n", done - msg.length, done, _buf->filename().c_str());
+            fprintf(stderr, "sending %ld to %ld of %s\n", done - msg.length, done, _buf->filename().c_str());
             otf_hton( &msg );
             ck_send ( _tcp, (char*)&msg, sizeof(msg) );
         }

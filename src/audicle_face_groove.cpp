@@ -301,7 +301,7 @@ void AudicleFaceGroove::render_panel( )
         glDisable( GL_LIGHTING );
         glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
         scaleFont( .052 );
-        sprintf( buffer, "%d", x );
+        sprintf( buffer, "%ld", x );
         drawString( buffer );
         glEnable( GL_LIGHTING );
         glPopMatrix();        
