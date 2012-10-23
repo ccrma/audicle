@@ -1,0 +1,7 @@
+*.o
+
+src/audicle
+src/chuck.output
+src/chuck.tab.c
+src/chuck.tab.h
+src/chuck.yy.c
