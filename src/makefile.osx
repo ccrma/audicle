@@ -3,12 +3,12 @@ CHUCK_DIR=chuck/src
 
 CC=gcc
 INCLUDES=-I$(CHUCK_DIR)
-FLAGS=-D__MACOSX_CORE__ -D__CHUCK_STAT_TRACK__ $(INCLUDES) -O3 -m32 -c
+FLAGS=-D__MACOSX_CORE__ -D__CHUCK_STAT_TRACK__ $(INCLUDES) -O3 -m32 -c -mmacosx-version-min=10.5
 LIBS=-framework CoreAudio -framework CoreMIDI -framework CoreFoundation \
     -framework OpenGL -framework GLUT -framework AppKit -framework Carbon \
     -framework IOKit -lstdc++ -lm \
     -F/System/Library/PrivateFrameworks -weak_framework MultitouchSupport \
-    -m32
+    -m32 -mmacosx-version-min=10.5
 SF_OBJ=util_sndfile.o
 
 #-----------------------------------------------------------------------------
