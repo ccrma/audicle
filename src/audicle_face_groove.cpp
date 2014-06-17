@@ -296,15 +296,46 @@ void AudicleFaceGroove::render_panel( )
         glPushMatrix();
         render_box( m_panel->matrix[x] );
         glPopMatrix();
+        // glPushMatrix();
+        // glTranslatef( 0.0f, -0.3f, 1.0f );
+        // glDisable( GL_LIGHTING );
+        // glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
+        // scaleFont( .052 );
+        // sprintf( buffer, "%ld", x );
+        // drawString( buffer );
+        // glEnable( GL_LIGHTING );
+        // glPopMatrix();        
+        glPopMatrix();
+    }
+    
+    for( t_CKUINT x = 1; x < m_panel->width/2+1; x++ )
+    {
         glPushMatrix();
-        glTranslatef( 0.0f, -0.3f, 1.0f );
+        glTranslatef( (x-1) * xinc*2 + xinc*0.5, 0.0f, 0.0f );
+        // glPushMatrix();
+        // render_box( m_panel->matrix[x] );
+        // glPopMatrix();
+        
         glDisable( GL_LIGHTING );
+        glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+        
+        float bracket_xoff = 0.97;
+        float bracket_yoff_top = -0.175;
+        float bracket_yoff_bottom = -0.19;
+        
+        glBegin(GL_LINE_STRIP);
+        glVertex3f(-xinc*bracket_xoff, bracket_yoff_top, 1.0f);
+        glVertex3f(-xinc*bracket_xoff, bracket_yoff_bottom, 1.0f);
+        glVertex3f( xinc*bracket_xoff, bracket_yoff_bottom, 1.0f);
+        glVertex3f( xinc*bracket_xoff, bracket_yoff_top, 1.0f);
+        glEnd();
+        
+        glTranslatef( -0.02f, -0.3f, 1.0f );
         glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
         scaleFont( .052 );
         sprintf( buffer, "%ld", x );
         drawString( buffer );
         glEnable( GL_LIGHTING );
-        glPopMatrix();        
         glPopMatrix();
     }
 
