@@ -2,8 +2,10 @@
 CHUCK_DIR=chuck/src
 
 CC=gcc
+CXX=g++
 INCLUDES=-I$(CHUCK_DIR)
 FLAGS=-D__MACOSX_CORE__ -D__CHUCK_STAT_TRACK__ $(INCLUDES) -O3 -m32 -c -mmacosx-version-min=10.5
+CFLAGS=$(FLAGS)
 LIBS=-framework CoreAudio -framework CoreMIDI -framework CoreFoundation \
     -framework OpenGL -framework GLUT -framework AppKit -framework Carbon \
     -framework IOKit -lstdc++ -lm \
@@ -46,16 +48,39 @@ CHUCK_OBJS= chuck.tab.o chuck.yy.o chuck_absyn.o chuck_parse.o chuck_errmsg.o \
 	chuck_compile.o chuck_dl.o chuck_oo.o chuck_lang.o chuck_ugen.o \
 	chuck_otf.o chuck_stats.o chuck_bbq.o chuck_shell.o \
 	chuck_globals.o digiio_rtaudio.o hidio_sdl.o midiio_rtmidi.o \
-	rtaudio.o rtmidi.o ugen_osc.o ugen_filter.o ugen_stk.o ugen_xxx.o \
+	rtmidi.o ugen_osc.o ugen_filter.o ugen_stk.o ugen_xxx.o \
 	uana_xform.o uana_extract.o \
 	ulib_machine.o ulib_math.o ulib_std.o ulib_opsc.o util_buffers.o \
 	util_math.o util_network.o util_raw.o util_string.o util_thread.o \
-	util_xforms.o util_opsc.o util_console.o util_hid.o $(SF_OBJ)
-    
-OBJS= $(BASE_OBJS) $(UI_OBJS) $(FACE_OBJS) $(COAUDICLE_OBJS) $(CHUCK_OBJS)
+	util_xforms.o util_opsc.o util_console.o util_hid.o $(SF_OBJ) \
+
+LO_CSRCS=lo/address.c lo/blob.c lo/bundle.c lo/message.c lo/method.c \
+	lo/pattern_match.c lo/send.c lo/server.c lo/server_thread.c lo/timetag.c
+LO_CSRCS:=$(addprefix $(CHUCK_DIR)/,$(LO_CSRCS))
+
+CXXSRCS+=chuck_io.cpp util_serial.cpp RtAudio/RtAudio.cpp ulib_regex.cpp
+CXXSRCS:=$(addprefix $(CHUCK_DIR)/,$(CXXSRCS))
+
+CXXOBJS=$(CXXSRCS:.cpp=.o)
+LO_COBJS=$(LO_CSRCS:.c=.o)
+
+LO_CFLAGS=-DHAVE_CONFIG_H -I.
+CFLAGSDEPEND=$(CFLAGS)
+
+OBJS= $(BASE_OBJS) $(UI_OBJS) $(FACE_OBJS) $(COAUDICLE_OBJS) $(CHUCK_OBJS) $(LO_COBJS) $(CXXOBJS)
 
 audicle: $(OBJS)
 	g++ -o audicle $(OBJS) $(LIBS)
+
+-include $(OBJS:.o=.d)
+
+$(LO_COBJS): %.o: %.c
+	$(CC) $(CFLAGS) $(LO_CFLAGS) $(ARCHOPTS) -c $< -o $@
+	@$(CC) -MM -MQ "$@" $(CFLAGSDEPEND) $(LO_CFLAGS) $< > $*.d
+
+$(CXXOBJS): %.o: %.cpp
+	$(CXX) $(CFLAGS) $(ARCHOPTS) -c $< -o $@
+	@$(CXX) -MM -MQ "$@" $(CFLAGSDEPEND) $< > $*.d
 
 chuck.tab.c: $(CHUCK_DIR)/chuck.y
 	$(YACC) -dv -b chuck $(CHUCK_DIR)/chuck.y
